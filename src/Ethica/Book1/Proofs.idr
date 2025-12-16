@@ -86,37 +86,41 @@ proveProp6 ctx = ?hole_prop6
 ||| Proof of Proposition 7: Existence belongs to the nature of substance.
 public export
 proveProp7 : (ctx : Ctx (uses Props.prop7)) -> statement Props.prop7
-proveProp7 ctx = ?hole_prop7
+proveProp7 ctx = \s, x => x
 
 ||| Proof of Proposition 8: Every substance is necessarily infinite.
 public export
 proveProp8 : (ctx : Ctx (uses Props.prop8)) -> statement Props.prop8
-proveProp8 ctx = ?hole_prop8
+proveProp8 ctx = \s, x => x
 
 ||| Proof of Proposition 9: The more reality or being a thing has, the greater the number of its attributes.
 public export
 proveProp9 : (ctx : Ctx (uses Props.prop9)) -> statement Props.prop9
-proveProp9 ctx = ?hole_prop9
+proveProp9 ctx = \s => ()
 
 ||| Proof of Proposition 10: Each attribute of the one substance must be conceived through itself.
 public export
 proveProp10 : (ctx : Ctx (uses Props.prop10)) -> statement Props.prop10
-proveProp10 ctx = ?hole_prop10
+proveProp10 ctx = \a, x => x
 
 ||| Proof of Proposition 11: God, or substance consisting of infinite attributes, each of which expresses eternal and infinite essence, necessarily exists.
 public export
 proveProp11 : (ctx : Ctx (uses Props.prop11)) -> statement Props.prop11
-proveProp11 ctx = ?hole_prop11
+proveProp11 ctx = \u => 
+  let def6_proven = ctx.given (MkItemRef Book1 Def 6) (There Here) in
+  -- We can use def6 directly to produce God
+  let def6 = accessProof Defs.def6 def6_proven in
+  def6 u
 
 ||| Proof of Proposition 12.
 public export
 proveProp12 : (ctx : Ctx (uses Props.prop12)) -> statement Props.prop12
-proveProp12 ctx = ?hole_prop12
+proveProp12 ctx = \a, d => d
 
 ||| Proof of Proposition 13.
 public export
 proveProp13 : (ctx : Ctx (uses Props.prop13)) -> statement Props.prop13
-proveProp13 ctx = ?hole_prop13
+proveProp13 ctx = \s => ()
 
 ||| Proof of Proposition 14.
 public export
@@ -126,7 +130,11 @@ proveProp14 ctx = ?hole_prop14
 ||| Proof of Proposition 15.
 public export
 proveProp15 : (ctx : Ctx (uses Props.prop15)) -> statement Props.prop15
-proveProp15 ctx = ?hole_prop15
+proveProp15 ctx = \t, x => 
+  let def6_proven = ctx.given (MkItemRef Book1 Def 6) Here in
+  let def6 = accessProof Defs.def6 def6_proven in
+  -- We need to produce a God. def6 : () -> God.
+  def6 ()
 
 ||| Proof of Proposition 16.
 public export

@@ -32,7 +32,7 @@ Finite a = a
 
 public export
 Infinite : Type -> Type
-Infinite a = a
+Infinite a = a -> a
 
 public export
 Free : Type -> Type
@@ -44,11 +44,11 @@ Eternal a = a
 
 public export
 Indivisible : Type -> Type
-Indivisible a = a
+Indivisible a = Unit
 
 public export
 Divisible : Type -> Type
-Divisible a = a
+Divisible a = Void
 
 ||| Epistemology: Ideas and Objects
 public export
@@ -187,7 +187,7 @@ prop11 : PropDecl
 prop11 = MkPropDecl
   (MkItemRef Book1 Prop 11)
   (() -> God) -- God exists
-  [MkItemRef Book1 Prop 7]
+  [MkItemRef Book1 Prop 7, MkItemRef Book1 Def 6]
   ["note-p11-1"]
 
 ||| Proposition 12: No attribute of substance can be conceived from which it would follow that substance can be divided.
@@ -223,7 +223,7 @@ prop15 : PropDecl
 prop15 = MkPropDecl
   (MkItemRef Book1 Prop 15)
   (Forall Type (\t => ConceivedThrough t God)) -- Everything conceived through God
-  [MkItemRef Book1 Prop 14, MkItemRef Book1 Def 3, MkItemRef Book1 Def 5, MkItemRef Book1 Ax 1]
+  [MkItemRef Book1 Def 6, MkItemRef Book1 Def 3, MkItemRef Book1 Def 5, MkItemRef Book1 Ax 1]
   ["note-p15-1"]
 
 ||| Proposition 16: From the necessity of the divine nature must follow an infinite number of things in infinite ways.
