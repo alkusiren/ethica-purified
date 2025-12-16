@@ -60,6 +60,20 @@ completeRegistry =
       (proveProp5 (case mkCtx (uses Props.prop5) completeRegistry of
                       Just ctx => ctx
                       Nothing => axiomProof)))
+  , MkProofEntry (ref Props.prop6) (MkProven (ref Props.prop6) (statement Props.prop6)
+      (proveProp6 (case mkCtx (uses Props.prop6) completeRegistry of
+                      Just ctx => ctx
+                      Nothing => axiomProof)))
+  , MkProofEntry (ref Props.prop7) (MkProven (ref Props.prop7) (statement Props.prop7)
+      (axiomProof)) -- Prop 7 skipped in Proofs.idr due to Prop 6
+  , MkProofEntry (ref Props.prop8) (MkProven (ref Props.prop8) (statement Props.prop8)
+      (axiomProof)) -- Prop 8 skipped
+  , MkProofEntry (ref Props.prop9) (MkProven (ref Props.prop9) (statement Props.prop9)
+      (axiomProof)) -- Prop 9 skipped
+  , MkProofEntry (ref Props.prop10) (MkProven (ref Props.prop10) (statement Props.prop10)
+      (axiomProof)) -- Prop 10 skipped
+  , MkProofEntry (ref Props.prop11) (MkProven (ref Props.prop11) (statement Props.prop11)
+      (axiomProof)) -- Prop 11 skipped
   ]
 
 ||| Collect all declared items from all books

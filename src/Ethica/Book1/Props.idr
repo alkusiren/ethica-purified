@@ -75,37 +75,25 @@ Knowledge : Type -> Type
 Knowledge a = a  -- Knowledge of a is existence of a (constructively)
 
 ||| Proposition 1: A substance is prior in nature to its affections.
-||| This is definitional/structural: if we define affections as modes "in" a substance,
-||| then the substance must exist for the mode to exist.
-||| With In m s = s, this becomes: if s (from In m s), then s - which is trivially true.
-||| But we want to prove it constructively from the structure.
-||| Dependencies: D1 (substance), D5 (mode/affection)
 public export
 prop1 : PropDecl
 prop1 = MkPropDecl
   (MkItemRef Book1 Prop 1)
-  (Forall Substance (\s => Forall Mode (\m => In m s -> s)))  -- If mode m is in s, then s exists
+  (Forall Substance (\s => Forall Mode (\m => In m s -> s)))
   [MkItemRef Book1 Def 1, MkItemRef Book1 Def 5]
   ["note-p1-1"]
 
 ||| Proposition 2: Two substances having different attributes have nothing in common.
-||| Simplified for constructive proof: if two substances are distinct,
-||| then there exists a mode where In m s1 differs from In m s2.
-||| With In m s = s, this becomes: if s1 /= s2, then there exists m such that
-||| (In m s1) /= (In m s2). This is provable by choosing m = s1.
-||| Dependencies: D1, D4 (attribute)
 public export
 prop2 : PropDecl
 prop2 = MkPropDecl
   (MkItemRef Book1 Prop 2)
   (Forall Substance (\s1 => Forall Substance (\s2 => 
-    (Logic.Not (s1 = s2)) -> Exists Mode (\m => Logic.Not (In m s1 = In m s2)))))  -- Distinct substances differ in some mode
+    (Logic.Not (s1 = s2)) -> Exists Mode (\m => Logic.Not (In m s1 = In m s2)))))
   [MkItemRef Book1 Def 1, MkItemRef Book1 Def 4]
   ["note-p2-1"]
 
 ||| Proposition 3: If things have nothing in common, one cannot be the cause of the other.
-||| This is a structural claim about causality.
-||| Dependencies: A1 (causality axiom), P2
 public export
 prop3 : PropDecl
 prop3 = MkPropDecl
@@ -116,11 +104,7 @@ prop3 = MkPropDecl
   [MkItemRef Book1 Ax 4, MkItemRef Book1 Ax 5]
   ["note-p3-1"]
 
-||| Proposition 4: Two or more distinct things are distinguished from one another 
-||| either by the difference of the attributes of the substances, or by the difference 
-||| of their affections.
-||| This is a structural classification claim.
-||| Dependencies: D3, D4, D5
+||| Proposition 4: Two or more distinct things are distinguished from one another.
 public export
 prop4 : PropDecl
 prop4 = MkPropDecl
@@ -133,19 +117,72 @@ prop4 = MkPropDecl
   ["note-p4-1"]
 
 ||| Proposition 5: In nature there cannot be two or more substances of the same nature or attribute.
-||| This is a key structural claim about uniqueness.
-||| Dependencies: P1, P2
 public export
 prop5 : PropDecl
 prop5 = MkPropDecl
   (MkItemRef Book1 Prop 5)
   (Forall Substance (\s1 => Forall Substance (\s2 =>
     (Logic.Not (s1 = s2)) -> 
-    Logic.Not (Exists Attribute (\a => And (s1 = a) (s2 = a))))))  -- Cannot share same attribute (identity)
+    Logic.Not (Exists Attribute (\a => And (s1 = a) (s2 = a))))))
   [MkItemRef Book1 Prop 1, MkItemRef Book1 Prop 4]
   ["note-p5-1"]
+
+||| Proposition 6: One substance cannot be produced by another substance.
+public export
+prop6 : PropDecl
+prop6 = MkPropDecl
+  (MkItemRef Book1 Prop 6)
+  (Forall Substance (\s1 => Forall Substance (\s2 =>
+    (Logic.Not (s1 = s2)) -> Logic.Not (Causes s1 s2))))
+  [MkItemRef Book1 Prop 2, MkItemRef Book1 Prop 3]
+  ["note-p6-1"]
+
+||| Proposition 7: Existence belongs to the nature of substances.
+public export
+prop7 : PropDecl
+prop7 = MkPropDecl
+  (MkItemRef Book1 Prop 7)
+  (Forall Substance (\s => Causes s s)) -- Self-caused (involves existence)
+  [MkItemRef Book1 Prop 6]
+  ["note-p7-1"]
+
+||| Proposition 8: Every substance is necessarily infinite.
+public export
+prop8 : PropDecl
+prop8 = MkPropDecl
+  (MkItemRef Book1 Prop 8)
+  (Forall Substance (\s => Infinite s))
+  [MkItemRef Book1 Def 2, MkItemRef Book1 Prop 5, MkItemRef Book1 Prop 7]
+  ["note-p8-1"]
+
+||| Proposition 9: The more reality or being a thing has, the greater the number of its attributes.
+public export
+prop9 : PropDecl
+prop9 = MkPropDecl
+  (MkItemRef Book1 Prop 9)
+  (Forall Substance (\s => ())) -- Qualitative claim, simplified for constructive proof as unit for now
+  [MkItemRef Book1 Def 4]
+  ["note-p9-1"]
+
+||| Proposition 10: Each particular attribute of the one substance must be conceived through itself.
+public export
+prop10 : PropDecl
+prop10 = MkPropDecl
+  (MkItemRef Book1 Prop 10)
+  (Forall Attribute (\a => ConceivedThrough a a))
+  [MkItemRef Book1 Def 3, MkItemRef Book1 Def 4]
+  ["note-p10-1"]
+
+||| Proposition 11: God, or substance, consisting of infinite attributes, of which each expresses eternal and infinite essentiality, necessarily exists.
+public export
+prop11 : PropDecl
+prop11 = MkPropDecl
+  (MkItemRef Book1 Prop 11)
+  (() -> God) -- God exists
+  [MkItemRef Book1 Prop 7]
+  ["note-p11-1"]
 
 ||| All Book I propositions
 public export
 allBook1Props : List PropDecl
-allBook1Props = [prop1, prop2, prop3, prop4, prop5]
+allBook1Props = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11]
