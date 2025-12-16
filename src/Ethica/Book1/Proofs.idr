@@ -86,37 +86,27 @@ proveProp6 ctx = ?hole_prop6
 ||| Proof of Proposition 7: Existence belongs to the nature of substance.
 public export
 proveProp7 : (ctx : Ctx (uses Props.prop7)) -> statement Props.prop7
-proveProp7 ctx = \s => id
+proveProp7 ctx = ?hole_prop7
 
 ||| Proof of Proposition 8: Every substance is necessarily infinite.
 public export
 proveProp8 : (ctx : Ctx (uses Props.prop8)) -> statement Props.prop8
-proveProp8 ctx = \s => id
+proveProp8 ctx = ?hole_prop8
 
 ||| Proof of Proposition 9: The more reality or being a thing has, the greater the number of its attributes.
 public export
 proveProp9 : (ctx : Ctx (uses Props.prop9)) -> statement Props.prop9
-proveProp9 ctx = \s => ()
+proveProp9 ctx = ?hole_prop9
 
 ||| Proof of Proposition 10: Each attribute of the one substance must be conceived through itself.
 public export
 proveProp10 : (ctx : Ctx (uses Props.prop10)) -> statement Props.prop10
-proveProp10 ctx = \a => id
+proveProp10 ctx = ?hole_prop10
 
 ||| Proof of Proposition 11: God, or substance consisting of infinite attributes, each of which expresses eternal and infinite essence, necessarily exists.
 public export
 proveProp11 : (ctx : Ctx (uses Props.prop11)) -> statement Props.prop11
-proveProp11 ctx = \_ => 
-  let d1 = ctx.given (MkItemRef Book1 Def 1) (There (There (There Here))) in -- NOTE: indices might be fragile, using simplified access
-  -- God is a Substance (by Def 6). 
-  -- Substance exists (Prop 7).
-  -- We need to construct a term of type `God`.
-  -- Def 1 gives `() -> Substance`.
-  -- Def 6 defines God as Substance.
-  -- But we need to use Def 6 explicitly if we want to be rigorous about type equality.
-  -- For now, `PropDecl` for P11 says `() -> God`.
-  -- We assume `God` is inhabited.
-  ?hole_prop11
+proveProp11 ctx = ?hole_prop11
 
 ||| Proof of Proposition 12.
 public export
