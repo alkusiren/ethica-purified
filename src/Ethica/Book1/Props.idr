@@ -226,7 +226,97 @@ prop15 = MkPropDecl
   [MkItemRef Book1 Prop 14, MkItemRef Book1 Def 3, MkItemRef Book1 Def 5, MkItemRef Book1 Ax 1]
   ["note-p15-1"]
 
+||| Proposition 16: From the necessity of the divine nature must follow an infinite number of things in infinite ways.
+public export
+prop16 : PropDecl
+prop16 = MkPropDecl
+  (MkItemRef Book1 Prop 16)
+  (Forall Type (\t => Causes God t)) -- Simplified: God causes everything (infinite ways)
+  [MkItemRef Book1 Def 6, MkItemRef Book1 Prop 11]
+  ["note-p16-1"]
+
+||| Proposition 17: God acts solely by the laws of his own nature, and is not constrained by anyone.
+public export
+prop17 : PropDecl
+prop17 = MkPropDecl
+  (MkItemRef Book1 Prop 17)
+  (Free God) -- God is free (Def 7: acts by necessity of own nature)
+  [MkItemRef Book1 Def 7, MkItemRef Book1 Prop 16, MkItemRef Book1 Prop 15]
+  ["note-p17-1"]
+
+||| Proposition 18: God is the indwelling and not the transient cause of all things.
+public export
+prop18 : PropDecl
+prop18 = MkPropDecl
+  (MkItemRef Book1 Prop 18)
+  (Forall Type (\t => In t God)) -- All things are in God (Prop 15 variant)
+  [MkItemRef Book1 Prop 15, MkItemRef Book1 Prop 16, MkItemRef Book1 Prop 14]
+  ["note-p18-1"]
+
+||| Proposition 19: God, and all the attributes of God, are eternal.
+public export
+prop19 : PropDecl
+prop19 = MkPropDecl
+  (MkItemRef Book1 Prop 19)
+  (And (Eternal God) (Forall Attribute (\a => Eternal a)))
+  [MkItemRef Book1 Def 8, MkItemRef Book1 Prop 7, MkItemRef Book1 Def 6]
+  ["note-p19-1"]
+
+||| Proposition 20: The existence of God and his essence are one and the same.
+public export
+prop20 : PropDecl
+prop20 = MkPropDecl
+  (MkItemRef Book1 Prop 20)
+  (God = Eternal God) -- Existence (Eternal) is essence
+  [MkItemRef Book1 Prop 19, MkItemRef Book1 Def 8]
+  ["note-p20-1"]
+
+||| Proposition 21: All things which follow from the absolute nature of any attribute of God must always exist and be infinite.
+public export
+prop21 : PropDecl
+prop21 = MkPropDecl
+  (MkItemRef Book1 Prop 21)
+  (Forall Attribute (\a => Infinite a)) -- Infinite attributes
+  [MkItemRef Book1 Prop 11, MkItemRef Book1 Def 6]
+  ["note-p21-1"]
+
+||| Proposition 22: Whatsoever follows from any attribute of God... must also exist necessarily and as infinite.
+public export
+prop22 : PropDecl
+prop22 = MkPropDecl
+  (MkItemRef Book1 Prop 22)
+  (Forall Attribute (\a => Infinite a)) -- Redundant/Corollary for now
+  [MkItemRef Book1 Prop 21]
+  ["note-p22-1"]
+
+||| Proposition 23: Every mode, which exists both necessarily and as infinite, must necessarily follow...
+public export
+prop23 : PropDecl
+prop23 = MkPropDecl
+  (MkItemRef Book1 Prop 23)
+  (Forall Mode (\m => Infinite m -> Causes God m))
+  [MkItemRef Book1 Def 5, MkItemRef Book1 Prop 15]
+  ["note-p23-1"]
+
+||| Proposition 24: The essence of things produced by God does not involve existence.
+public export
+prop24 : PropDecl
+prop24 = MkPropDecl
+  (MkItemRef Book1 Prop 24)
+  (Forall Type (\t => Logic.Not (God = t) -> Logic.Not (Eternal t))) -- Finite things are not Eternal (essence != existence)
+  [MkItemRef Book1 Def 1]
+  ["note-p24-1"]
+
+||| Proposition 25: God is the efficient cause not only of the existence of things, but also of their essence.
+public export
+prop25 : PropDecl
+prop25 = MkPropDecl
+  (MkItemRef Book1 Prop 25)
+  (Forall Type (\t => And (Causes God t) (Causes God t))) -- Cause of existence and essence (structural placeholder)
+  [MkItemRef Book1 Ax 4, MkItemRef Book1 Prop 15]
+  ["note-p25-1"]
+
 ||| All Book I propositions
 public export
 allBook1Props : List PropDecl
-allBook1Props = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11, prop12, prop13, prop14, prop15]
+allBook1Props = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11, prop12, prop13, prop14, prop15, prop16, prop17, prop18, prop19, prop20, prop21, prop22, prop23, prop24, prop25]
