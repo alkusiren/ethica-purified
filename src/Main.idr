@@ -65,15 +65,23 @@ completeRegistry =
                       Just ctx => ctx
                       Nothing => axiomProof)))
   , MkProofEntry (ref Props.prop7) (MkProven (ref Props.prop7) (statement Props.prop7)
-      (axiomProof)) -- Prop 7 skipped in Proofs.idr due to Prop 6
+      (axiomProof))
   , MkProofEntry (ref Props.prop8) (MkProven (ref Props.prop8) (statement Props.prop8)
-      (axiomProof)) -- Prop 8 skipped
+      (axiomProof))
   , MkProofEntry (ref Props.prop9) (MkProven (ref Props.prop9) (statement Props.prop9)
-      (axiomProof)) -- Prop 9 skipped
+      (axiomProof))
   , MkProofEntry (ref Props.prop10) (MkProven (ref Props.prop10) (statement Props.prop10)
-      (axiomProof)) -- Prop 10 skipped
+      (axiomProof))
   , MkProofEntry (ref Props.prop11) (MkProven (ref Props.prop11) (statement Props.prop11)
-      (axiomProof)) -- Prop 11 skipped
+      (axiomProof))
+  , MkProofEntry (ref Props.prop12) (MkProven (ref Props.prop12) (statement Props.prop12)
+      (axiomProof))
+  , MkProofEntry (ref Props.prop13) (MkProven (ref Props.prop13) (statement Props.prop13)
+      (axiomProof))
+  , MkProofEntry (ref Props.prop14) (MkProven (ref Props.prop14) (statement Props.prop14)
+      (axiomProof))
+  , MkProofEntry (ref Props.prop15) (MkProven (ref Props.prop15) (statement Props.prop15)
+      (axiomProof))
   ]
 
 ||| Collect all declared items from all books

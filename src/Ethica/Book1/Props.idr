@@ -42,6 +42,14 @@ public export
 Eternal : Type -> Type
 Eternal a = a
 
+public export
+Indivisible : Type -> Type
+Indivisible a = a
+
+public export
+Divisible : Type -> Type
+Divisible a = a
+
 ||| Epistemology: Ideas and Objects
 public export
 Idea : Type
@@ -182,7 +190,43 @@ prop11 = MkPropDecl
   [MkItemRef Book1 Prop 7]
   ["note-p11-1"]
 
+||| Proposition 12: No attribute of substance can be conceived from which it would follow that substance can be divided.
+public export
+prop12 : PropDecl
+prop12 = MkPropDecl
+  (MkItemRef Book1 Prop 12)
+  (Forall Attribute (\a => Logic.Not (Divisible a))) -- Simplified: Attributes imply indivisibility
+  [MkItemRef Book1 Prop 8, MkItemRef Book1 Prop 6, MkItemRef Book1 Prop 5]
+  ["note-p12-1"]
+
+||| Proposition 13: Substance absolutely infinite is indivisible.
+public export
+prop13 : PropDecl
+prop13 = MkPropDecl
+  (MkItemRef Book1 Prop 13)
+  (Forall Substance (\s => Indivisible s))
+  [MkItemRef Book1 Prop 5, MkItemRef Book1 Prop 7]
+  ["note-p13-1"]
+
+||| Proposition 14: Besides God no substance can be granted or conceived.
+public export
+prop14 : PropDecl
+prop14 = MkPropDecl
+  (MkItemRef Book1 Prop 14)
+  (Forall Substance (\s => s = God)) -- Monism: Any substance is God
+  [MkItemRef Book1 Def 6, MkItemRef Book1 Prop 11, MkItemRef Book1 Prop 5]
+  ["note-p14-1"]
+
+||| Proposition 15: Whatsoever is, is in God, and without God nothing can be, or be conceived.
+public export
+prop15 : PropDecl
+prop15 = MkPropDecl
+  (MkItemRef Book1 Prop 15)
+  (Forall Type (\t => ConceivedThrough t God)) -- Everything conceived through God
+  [MkItemRef Book1 Prop 14, MkItemRef Book1 Def 3, MkItemRef Book1 Def 5, MkItemRef Book1 Ax 1]
+  ["note-p15-1"]
+
 ||| All Book I propositions
 public export
 allBook1Props : List PropDecl
-allBook1Props = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11]
+allBook1Props = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11, prop12, prop13, prop14, prop15]
