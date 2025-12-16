@@ -9,14 +9,18 @@ import Decidable.Equality
 public export
 data Book : Type where
   Book1 : Book
+  Book2 : Book
 
 public export
 Eq Book where
   Book1 == Book1 = True
+  Book2 == Book2 = True
+  _ == _ = False
 
 public export
 Show Book where
   show Book1 = "I"
+  show Book2 = "II"
 
 ||| Kind of item
 public export
@@ -37,6 +41,9 @@ Eq ItemKind where
 public export
 DecEq Book where
   decEq Book1 Book1 = Yes Refl
+  decEq Book2 Book2 = Yes Refl
+  decEq Book1 Book2 = No (\eq => case eq of Refl impossible)
+  decEq Book2 Book1 = No (\eq => case eq of Refl impossible)
 
 public export
 DecEq ItemKind where
@@ -91,8 +98,12 @@ Eq ItemRef where
 ||| Show instance for ItemRef
 public export
 Show ItemRef where
-  show (MkItemRef Book1 Def n)   = "D" ++ show n
-  show (MkItemRef Book1 Ax n)    = "A" ++ show n
-  show (MkItemRef Book1 Prop n)  = "P" ++ show n
-  show (MkItemRef Book1 Lemma n) = "L" ++ show n
+  show (MkItemRef Book1 Def n)   = "I D" ++ show n
+  show (MkItemRef Book1 Ax n)    = "I A" ++ show n
+  show (MkItemRef Book1 Prop n)  = "I P" ++ show n
+  show (MkItemRef Book1 Lemma n) = "I L" ++ show n
+  show (MkItemRef Book2 Def n)   = "II D" ++ show n
+  show (MkItemRef Book2 Ax n)    = "II A" ++ show n
+  show (MkItemRef Book2 Prop n)  = "II P" ++ show n
+  show (MkItemRef Book2 Lemma n) = "II L" ++ show n
 

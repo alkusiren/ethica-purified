@@ -15,6 +15,10 @@ modules = Ethica.Core.Logic
         , Ethica.Book1.Axioms
         , Ethica.Book1.Props
         , Ethica.Book1.Proofs
+        , Ethica.Book2.Defs
+        , Ethica.Book2.Axioms
+        , Ethica.Book2.Props
+        , Ethica.Book2.Proofs
         , Main
 
 main = Main

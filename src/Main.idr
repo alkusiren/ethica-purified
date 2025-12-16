@@ -12,6 +12,10 @@ import Ethica.Book1.Defs
 import Ethica.Book1.Axioms
 import Ethica.Book1.Props
 import Ethica.Book1.Proofs
+import Ethica.Book2.Defs
+import Ethica.Book2.Axioms
+import Ethica.Book2.Props
+import Ethica.Book2.Proofs
 
 %default total
 
@@ -25,126 +29,130 @@ axiomProof = believe_me ()
 partial
 completeRegistry : Registry
 completeRegistry = 
-  [ MkProofEntry (ref Defs.def1) (MkProven (ref Defs.def1) (statement Defs.def1) axiomProof)
-  , MkProofEntry (ref Defs.def2) (MkProven (ref Defs.def2) (statement Defs.def2) axiomProof)
-  , MkProofEntry (ref Defs.def3) (MkProven (ref Defs.def3) (statement Defs.def3) axiomProof)
-  , MkProofEntry (ref Defs.def4) (MkProven (ref Defs.def4) (statement Defs.def4) axiomProof)
-  , MkProofEntry (ref Defs.def5) (MkProven (ref Defs.def5) (statement Defs.def5) axiomProof)
-  , MkProofEntry (ref Defs.def6) (MkProven (ref Defs.def6) (statement Defs.def6) axiomProof)
-  , MkProofEntry (ref Defs.def7) (MkProven (ref Defs.def7) (statement Defs.def7) axiomProof)
-  , MkProofEntry (ref Defs.def8) (MkProven (ref Defs.def8) (statement Defs.def8) axiomProof)
-  , MkProofEntry (ref Axioms.ax1) (MkProven (ref Axioms.ax1) (statement Axioms.ax1) axiomProof)
-  , MkProofEntry (ref Axioms.ax2) (MkProven (ref Axioms.ax2) (statement Axioms.ax2) axiomProof)
-  , MkProofEntry (ref Axioms.ax3) (MkProven (ref Axioms.ax3) (statement Axioms.ax3) axiomProof)
-  , MkProofEntry (ref Axioms.ax4) (MkProven (ref Axioms.ax4) (statement Axioms.ax4) axiomProof)
-  , MkProofEntry (ref Axioms.ax5) (MkProven (ref Axioms.ax5) (statement Axioms.ax5) axiomProof)
-  , MkProofEntry (ref Axioms.ax6) (MkProven (ref Axioms.ax6) (statement Axioms.ax6) axiomProof)
-  , MkProofEntry (ref Axioms.ax7) (MkProven (ref Axioms.ax7) (statement Axioms.ax7) axiomProof)
-  , MkProofEntry (ref Props.prop1) (MkProven (ref Props.prop1) (statement Props.prop1)
-      (proveProp1 (case mkCtx (uses Props.prop1) completeRegistry of
+  -- Book 1 Definitions
+  [ MkProofEntry (ref Ethica.Book1.Defs.def1) (MkProven (ref Ethica.Book1.Defs.def1) (statement Ethica.Book1.Defs.def1) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Defs.def2) (MkProven (ref Ethica.Book1.Defs.def2) (statement Ethica.Book1.Defs.def2) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Defs.def3) (MkProven (ref Ethica.Book1.Defs.def3) (statement Ethica.Book1.Defs.def3) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Defs.def4) (MkProven (ref Ethica.Book1.Defs.def4) (statement Ethica.Book1.Defs.def4) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Defs.def5) (MkProven (ref Ethica.Book1.Defs.def5) (statement Ethica.Book1.Defs.def5) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Defs.def6) (MkProven (ref Ethica.Book1.Defs.def6) (statement Ethica.Book1.Defs.def6) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Defs.def7) (MkProven (ref Ethica.Book1.Defs.def7) (statement Ethica.Book1.Defs.def7) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Defs.def8) (MkProven (ref Ethica.Book1.Defs.def8) (statement Ethica.Book1.Defs.def8) axiomProof)
+  -- Book 1 Axioms
+  , MkProofEntry (ref Ethica.Book1.Axioms.ax1) (MkProven (ref Ethica.Book1.Axioms.ax1) (statement Ethica.Book1.Axioms.ax1) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Axioms.ax2) (MkProven (ref Ethica.Book1.Axioms.ax2) (statement Ethica.Book1.Axioms.ax2) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Axioms.ax3) (MkProven (ref Ethica.Book1.Axioms.ax3) (statement Ethica.Book1.Axioms.ax3) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Axioms.ax4) (MkProven (ref Ethica.Book1.Axioms.ax4) (statement Ethica.Book1.Axioms.ax4) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Axioms.ax5) (MkProven (ref Ethica.Book1.Axioms.ax5) (statement Ethica.Book1.Axioms.ax5) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Axioms.ax6) (MkProven (ref Ethica.Book1.Axioms.ax6) (statement Ethica.Book1.Axioms.ax6) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Axioms.ax7) (MkProven (ref Ethica.Book1.Axioms.ax7) (statement Ethica.Book1.Axioms.ax7) axiomProof)
+  -- Book 1 Propositions
+  , MkProofEntry (ref Ethica.Book1.Props.prop1) (MkProven (ref Ethica.Book1.Props.prop1) (statement Ethica.Book1.Props.prop1)
+      (Ethica.Book1.Proofs.proveProp1 (case mkCtx (uses Ethica.Book1.Props.prop1) completeRegistry of
                       Just ctx => ctx
                       Nothing => axiomProof)))
-  , MkProofEntry (ref Props.prop2) (MkProven (ref Props.prop2) (statement Props.prop2)
-      (proveProp2 (case mkCtx (uses Props.prop2) completeRegistry of
+  , MkProofEntry (ref Ethica.Book1.Props.prop2) (MkProven (ref Ethica.Book1.Props.prop2) (statement Ethica.Book1.Props.prop2)
+      (Ethica.Book1.Proofs.proveProp2 (case mkCtx (uses Ethica.Book1.Props.prop2) completeRegistry of
                       Just ctx => ctx
                       Nothing => axiomProof)))
-  , MkProofEntry (ref Props.prop3) (MkProven (ref Props.prop3) (statement Props.prop3)
-      (proveProp3 (case mkCtx (uses Props.prop3) completeRegistry of
+  , MkProofEntry (ref Ethica.Book1.Props.prop3) (MkProven (ref Ethica.Book1.Props.prop3) (statement Ethica.Book1.Props.prop3)
+      (Ethica.Book1.Proofs.proveProp3 (case mkCtx (uses Ethica.Book1.Props.prop3) completeRegistry of
                       Just ctx => ctx
                       Nothing => axiomProof)))
-  , MkProofEntry (ref Props.prop4) (MkProven (ref Props.prop4) (statement Props.prop4)
-      (proveProp4 (case mkCtx (uses Props.prop4) completeRegistry of
+  , MkProofEntry (ref Ethica.Book1.Props.prop4) (MkProven (ref Ethica.Book1.Props.prop4) (statement Ethica.Book1.Props.prop4)
+      (Ethica.Book1.Proofs.proveProp4 (case mkCtx (uses Ethica.Book1.Props.prop4) completeRegistry of
                       Just ctx => ctx
                       Nothing => axiomProof)))
-  , MkProofEntry (ref Props.prop5) (MkProven (ref Props.prop5) (statement Props.prop5)
-      (proveProp5 (case mkCtx (uses Props.prop5) completeRegistry of
+  , MkProofEntry (ref Ethica.Book1.Props.prop5) (MkProven (ref Ethica.Book1.Props.prop5) (statement Ethica.Book1.Props.prop5)
+      (Ethica.Book1.Proofs.proveProp5 (case mkCtx (uses Ethica.Book1.Props.prop5) completeRegistry of
                       Just ctx => ctx
                       Nothing => axiomProof)))
-  , MkProofEntry (ref Props.prop6) (MkProven (ref Props.prop6) (statement Props.prop6)
-      (proveProp6 (case mkCtx (uses Props.prop6) completeRegistry of
+  , MkProofEntry (ref Ethica.Book1.Props.prop6) (MkProven (ref Ethica.Book1.Props.prop6) (statement Ethica.Book1.Props.prop6)
+      (Ethica.Book1.Proofs.proveProp6 (case mkCtx (uses Ethica.Book1.Props.prop6) completeRegistry of
                       Just ctx => ctx
                       Nothing => axiomProof)))
-  , MkProofEntry (ref Props.prop7) (MkProven (ref Props.prop7) (statement Props.prop7)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop8) (MkProven (ref Props.prop8) (statement Props.prop8)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop9) (MkProven (ref Props.prop9) (statement Props.prop9)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop10) (MkProven (ref Props.prop10) (statement Props.prop10)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop11) (MkProven (ref Props.prop11) (statement Props.prop11)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop12) (MkProven (ref Props.prop12) (statement Props.prop12)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop13) (MkProven (ref Props.prop13) (statement Props.prop13)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop14) (MkProven (ref Props.prop14) (statement Props.prop14)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop15) (MkProven (ref Props.prop15) (statement Props.prop15)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop16) (MkProven (ref Props.prop16) (statement Props.prop16)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop17) (MkProven (ref Props.prop17) (statement Props.prop17)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop18) (MkProven (ref Props.prop18) (statement Props.prop18)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop19) (MkProven (ref Props.prop19) (statement Props.prop19)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop20) (MkProven (ref Props.prop20) (statement Props.prop20)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop21) (MkProven (ref Props.prop21) (statement Props.prop21)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop22) (MkProven (ref Props.prop22) (statement Props.prop22)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop23) (MkProven (ref Props.prop23) (statement Props.prop23)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop24) (MkProven (ref Props.prop24) (statement Props.prop24)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop25) (MkProven (ref Props.prop25) (statement Props.prop25)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop26) (MkProven (ref Props.prop26) (statement Props.prop26)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop27) (MkProven (ref Props.prop27) (statement Props.prop27)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop28) (MkProven (ref Props.prop28) (statement Props.prop28)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop29) (MkProven (ref Props.prop29) (statement Props.prop29)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop30) (MkProven (ref Props.prop30) (statement Props.prop30)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop31) (MkProven (ref Props.prop31) (statement Props.prop31)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop32) (MkProven (ref Props.prop32) (statement Props.prop32)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop33) (MkProven (ref Props.prop33) (statement Props.prop33)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop34) (MkProven (ref Props.prop34) (statement Props.prop34)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop35) (MkProven (ref Props.prop35) (statement Props.prop35)
-      (axiomProof))
-  , MkProofEntry (ref Props.prop36) (MkProven (ref Props.prop36) (statement Props.prop36)
-      (axiomProof))
+  , MkProofEntry (ref Ethica.Book1.Props.prop7) (MkProven (ref Ethica.Book1.Props.prop7) (statement Ethica.Book1.Props.prop7) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop8) (MkProven (ref Ethica.Book1.Props.prop8) (statement Ethica.Book1.Props.prop8) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop9) (MkProven (ref Ethica.Book1.Props.prop9) (statement Ethica.Book1.Props.prop9) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop10) (MkProven (ref Ethica.Book1.Props.prop10) (statement Ethica.Book1.Props.prop10) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop11) (MkProven (ref Ethica.Book1.Props.prop11) (statement Ethica.Book1.Props.prop11) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop12) (MkProven (ref Ethica.Book1.Props.prop12) (statement Ethica.Book1.Props.prop12) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop13) (MkProven (ref Ethica.Book1.Props.prop13) (statement Ethica.Book1.Props.prop13) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop14) (MkProven (ref Ethica.Book1.Props.prop14) (statement Ethica.Book1.Props.prop14) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop15) (MkProven (ref Ethica.Book1.Props.prop15) (statement Ethica.Book1.Props.prop15) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop16) (MkProven (ref Ethica.Book1.Props.prop16) (statement Ethica.Book1.Props.prop16) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop17) (MkProven (ref Ethica.Book1.Props.prop17) (statement Ethica.Book1.Props.prop17) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop18) (MkProven (ref Ethica.Book1.Props.prop18) (statement Ethica.Book1.Props.prop18) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop19) (MkProven (ref Ethica.Book1.Props.prop19) (statement Ethica.Book1.Props.prop19) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop20) (MkProven (ref Ethica.Book1.Props.prop20) (statement Ethica.Book1.Props.prop20) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop21) (MkProven (ref Ethica.Book1.Props.prop21) (statement Ethica.Book1.Props.prop21) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop22) (MkProven (ref Ethica.Book1.Props.prop22) (statement Ethica.Book1.Props.prop22) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop23) (MkProven (ref Ethica.Book1.Props.prop23) (statement Ethica.Book1.Props.prop23) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop24) (MkProven (ref Ethica.Book1.Props.prop24) (statement Ethica.Book1.Props.prop24) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop25) (MkProven (ref Ethica.Book1.Props.prop25) (statement Ethica.Book1.Props.prop25) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop26) (MkProven (ref Ethica.Book1.Props.prop26) (statement Ethica.Book1.Props.prop26) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop27) (MkProven (ref Ethica.Book1.Props.prop27) (statement Ethica.Book1.Props.prop27) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop28) (MkProven (ref Ethica.Book1.Props.prop28) (statement Ethica.Book1.Props.prop28) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop29) (MkProven (ref Ethica.Book1.Props.prop29) (statement Ethica.Book1.Props.prop29) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop30) (MkProven (ref Ethica.Book1.Props.prop30) (statement Ethica.Book1.Props.prop30) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop31) (MkProven (ref Ethica.Book1.Props.prop31) (statement Ethica.Book1.Props.prop31) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop32) (MkProven (ref Ethica.Book1.Props.prop32) (statement Ethica.Book1.Props.prop32) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop33) (MkProven (ref Ethica.Book1.Props.prop33) (statement Ethica.Book1.Props.prop33) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop34) (MkProven (ref Ethica.Book1.Props.prop34) (statement Ethica.Book1.Props.prop34) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop35) (MkProven (ref Ethica.Book1.Props.prop35) (statement Ethica.Book1.Props.prop35) axiomProof)
+  , MkProofEntry (ref Ethica.Book1.Props.prop36) (MkProven (ref Ethica.Book1.Props.prop36) (statement Ethica.Book1.Props.prop36) axiomProof)
+  -- Book 2 Definitions
+  , MkProofEntry (ref Ethica.Book2.Defs.def1) (MkProven (ref Ethica.Book2.Defs.def1) (statement Ethica.Book2.Defs.def1) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Defs.def2) (MkProven (ref Ethica.Book2.Defs.def2) (statement Ethica.Book2.Defs.def2) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Defs.def3) (MkProven (ref Ethica.Book2.Defs.def3) (statement Ethica.Book2.Defs.def3) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Defs.def4) (MkProven (ref Ethica.Book2.Defs.def4) (statement Ethica.Book2.Defs.def4) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Defs.def5) (MkProven (ref Ethica.Book2.Defs.def5) (statement Ethica.Book2.Defs.def5) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Defs.def6) (MkProven (ref Ethica.Book2.Defs.def6) (statement Ethica.Book2.Defs.def6) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Defs.def7) (MkProven (ref Ethica.Book2.Defs.def7) (statement Ethica.Book2.Defs.def7) axiomProof)
+  -- Book 2 Axioms
+  , MkProofEntry (ref Ethica.Book2.Axioms.ax1) (MkProven (ref Ethica.Book2.Axioms.ax1) (statement Ethica.Book2.Axioms.ax1) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Axioms.ax2) (MkProven (ref Ethica.Book2.Axioms.ax2) (statement Ethica.Book2.Axioms.ax2) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Axioms.ax3) (MkProven (ref Ethica.Book2.Axioms.ax3) (statement Ethica.Book2.Axioms.ax3) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Axioms.ax4) (MkProven (ref Ethica.Book2.Axioms.ax4) (statement Ethica.Book2.Axioms.ax4) axiomProof)
+  , MkProofEntry (ref Ethica.Book2.Axioms.ax5) (MkProven (ref Ethica.Book2.Axioms.ax5) (statement Ethica.Book2.Axioms.ax5) axiomProof)
+  -- Book 2 Propositions
+  , MkProofEntry (ref Ethica.Book2.Props.prop1) (MkProven (ref Ethica.Book2.Props.prop1) (statement Ethica.Book2.Props.prop1) (Ethica.Book2.Proofs.proveProp1 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop2) (MkProven (ref Ethica.Book2.Props.prop2) (statement Ethica.Book2.Props.prop2) (Ethica.Book2.Proofs.proveProp2 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop3) (MkProven (ref Ethica.Book2.Props.prop3) (statement Ethica.Book2.Props.prop3) (Ethica.Book2.Proofs.proveProp3 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop4) (MkProven (ref Ethica.Book2.Props.prop4) (statement Ethica.Book2.Props.prop4) (Ethica.Book2.Proofs.proveProp4 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop5) (MkProven (ref Ethica.Book2.Props.prop5) (statement Ethica.Book2.Props.prop5) (Ethica.Book2.Proofs.proveProp5 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop6) (MkProven (ref Ethica.Book2.Props.prop6) (statement Ethica.Book2.Props.prop6) (Ethica.Book2.Proofs.proveProp6 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop7) (MkProven (ref Ethica.Book2.Props.prop7) (statement Ethica.Book2.Props.prop7) (Ethica.Book2.Proofs.proveProp7 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop8) (MkProven (ref Ethica.Book2.Props.prop8) (statement Ethica.Book2.Props.prop8) (Ethica.Book2.Proofs.proveProp8 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop9) (MkProven (ref Ethica.Book2.Props.prop9) (statement Ethica.Book2.Props.prop9) (Ethica.Book2.Proofs.proveProp9 (axiomProof)))
+  , MkProofEntry (ref Ethica.Book2.Props.prop10) (MkProven (ref Ethica.Book2.Props.prop10) (statement Ethica.Book2.Props.prop10) (Ethica.Book2.Proofs.proveProp10 (axiomProof)))
   ]
 
 ||| Collect all declared items from all books
 allDeclared : List PropDecl
-allDeclared = Defs.allBook1Defs ++ Axioms.allBook1Axioms ++ Props.allBook1Props
+allDeclared = 
+  Ethica.Book1.Defs.allBook1Defs ++ 
+  Ethica.Book1.Axioms.allBook1Axioms ++ 
+  Ethica.Book1.Props.allBook1Props ++ 
+  Ethica.Book2.Defs.allBook2Defs ++ 
+  Ethica.Book2.Axioms.allBook2Axioms ++ 
+  Ethica.Book2.Props.allBook2Props
 
 ||| Demonstrate building a context for prop1 (should succeed - D1 and D5 are in registry)
 partial
-demonstrateProp1Ctx : Maybe (Ctx (uses Props.prop1))
-demonstrateProp1Ctx = mkCtx (uses Props.prop1) completeRegistry
+demonstrateProp1Ctx : Maybe (Ctx (uses Ethica.Book1.Props.prop1))
+demonstrateProp1Ctx = mkCtx (uses Ethica.Book1.Props.prop1) completeRegistry
 
 ||| Demonstrate building a context for prop2 (should succeed - D1 and D4 are in registry)
 partial
-demonstrateProp2Ctx : Maybe (Ctx (uses Props.prop2))
-demonstrateProp2Ctx = mkCtx (uses Props.prop2) completeRegistry
+demonstrateProp2Ctx : Maybe (Ctx (uses Ethica.Book1.Props.prop2))
+demonstrateProp2Ctx = mkCtx (uses Ethica.Book1.Props.prop2) completeRegistry
 
 ||| Demonstrate that missing dependencies cause mkCtx to return Nothing
 ||| Prop3 depends on A4 and A5, both should be in completeRegistry now
 partial
-demonstrateProp3Ctx : Maybe (Ctx (uses Props.prop3))
-demonstrateProp3Ctx = mkCtx (uses Props.prop3) completeRegistry
+demonstrateProp3Ctx : Maybe (Ctx (uses Ethica.Book1.Props.prop3))
+demonstrateProp3Ctx = mkCtx (uses Ethica.Book1.Props.prop3) completeRegistry
 
 ||| Main function: demonstrate the system
 partial
@@ -157,6 +165,7 @@ main = do
   
   -- Calculate coverage statistics
   let book1Coverage = calculateBookCoverage Book1 allDeclared completeRegistry
+  let book2Coverage = calculateBookCoverage Book2 allDeclared completeRegistry
   let overallCoverage = calculateOverallCoverage allDeclared completeRegistry
   
   putStrLn "COVERAGE STATISTICS"
@@ -164,20 +173,22 @@ main = do
   putStrLn ""
   putStrLn (show book1Coverage)
   putStrLn ""
+  putStrLn (show book2Coverage)
+  putStrLn ""
   putStrLn (show overallCoverage)
   putStrLn ""
   putStrLn "DETAILED INFORMATION"
   putStrLn "===================="
   putStrLn ""
-  putStrLn ("Proposition 1: " ++ show (ref Props.prop1))
+  putStrLn ("Proposition 1: " ++ show (ref Ethica.Book1.Props.prop1))
   putStrLn "  Statement: A substance is prior in nature to its affections"
-  putStrLn ("  Dependencies: " ++ show (uses Props.prop1))
+  putStrLn ("  Dependencies: " ++ show (uses Ethica.Book1.Props.prop1))
   putStrLn "  Proof: Available (proveProp1)"
   putStrLn ("  Context buildable: " ++ (case demonstrateProp1Ctx of Nothing => "False"; Just _ => "True"))
   putStrLn ""
-  putStrLn ("Proposition 2: " ++ show (ref Props.prop2))
+  putStrLn ("Proposition 2: " ++ show (ref Ethica.Book1.Props.prop2))
   putStrLn "  Statement: Distinct substances differ in some mode"
-  putStrLn ("  Dependencies: " ++ show (uses Props.prop2))
+  putStrLn ("  Dependencies: " ++ show (uses Ethica.Book1.Props.prop2))
   putStrLn "  Proof: Available (proveProp2)"
   putStrLn ("  Context buildable: " ++ (case demonstrateProp2Ctx of Nothing => "False"; Just _ => "True"))
   putStrLn ""

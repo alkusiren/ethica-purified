@@ -21,6 +21,7 @@ record BookStats where
 public export
 fullScope : Book -> BookStats
 fullScope Book1 = MkBookStats 36 8 7
+fullScope Book2 = MkBookStats 49 7 5
 
 ||| Total counts across all books
 public export
