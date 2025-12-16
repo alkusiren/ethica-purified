@@ -316,7 +316,106 @@ prop25 = MkPropDecl
   [MkItemRef Book1 Ax 4, MkItemRef Book1 Prop 15]
   ["note-p25-1"]
 
+||| Proposition 26: A thing which is conditioned to act in a particular manner, has necessarily been thus conditioned by God.
+public export
+prop26 : PropDecl
+prop26 = MkPropDecl
+  (MkItemRef Book1 Prop 26)
+  (Forall Type (\t => Causes God t)) -- Conditioned by God
+  [MkItemRef Book1 Prop 25, MkItemRef Book1 Prop 16]
+  ["note-p26-1"]
+
+||| Proposition 27: A thing, which has been conditioned by God to act in a particular way, cannot render itself unconditioned.
+public export
+prop27 : PropDecl
+prop27 = MkPropDecl
+  (MkItemRef Book1 Prop 27)
+  (Forall Type (\t => Causes God t -> Logic.Not (Free t))) -- Cannot uncondition itself (not free in absolute sense)
+  [MkItemRef Book1 Ax 3]
+  ["note-p27-1"]
+
+||| Proposition 28: Every individual thing... cannot exist or be conditioned to act... unless it be conditioned... by another cause...
+public export
+prop28 : PropDecl
+prop28 = MkPropDecl
+  (MkItemRef Book1 Prop 28)
+  (Forall Type (\t => Logic.Not (Infinite t) -> Exists Type (\cause => Causes cause t))) -- Finite things have external causes
+  [MkItemRef Book1 Prop 26, MkItemRef Book1 Prop 24]
+  ["note-p28-1"]
+
+||| Proposition 29: Nothing in the universe is contingent, but all things are conditioned to exist and operate in a particular manner by the necessity of the divine nature.
+public export
+prop29 : PropDecl
+prop29 = MkPropDecl
+  (MkItemRef Book1 Prop 29)
+  (Forall Type (\t => Causes God t)) -- Determinism: God causes all
+  [MkItemRef Book1 Prop 15, MkItemRef Book1 Prop 11, MkItemRef Book1 Prop 16, MkItemRef Book1 Prop 27]
+  ["note-p29-1"]
+
+||| Proposition 30: Intellect... must comprehend the attributes of God and the modifications of God, and nothing else.
+public export
+prop30 : PropDecl
+prop30 = MkPropDecl
+  (MkItemRef Book1 Prop 30)
+  (Forall Type (\t => ConceivedThrough t God)) -- Intellect comprehends things through God
+  [MkItemRef Book1 Ax 6, MkItemRef Book1 Prop 15]
+  ["note-p30-1"]
+
+||| Proposition 31: The intellect in function, whether finite or infinite, as will, desire, love, etc., should be referred to passive nature and not to active nature.
+public export
+prop31 : PropDecl
+prop31 = MkPropDecl
+  (MkItemRef Book1 Prop 31)
+  (Forall Idea (\i => Logic.Not (Free i))) -- Intellect is passive/determined
+  [MkItemRef Book1 Prop 29]
+  ["note-p31-1"]
+
+||| Proposition 32: Will cannot be called a free cause, but only a necessary cause.
+public export
+prop32 : PropDecl
+prop32 = MkPropDecl
+  (MkItemRef Book1 Prop 32)
+  (Forall Type (\w => Logic.Not (Free w))) -- Will is not free
+  [MkItemRef Book1 Prop 28]
+  ["note-p32-1"]
+
+||| Proposition 33: Things could not have been brought into being by God in any manner or in any order different from that which has in fact obtained.
+public export
+prop33 : PropDecl
+prop33 = MkPropDecl
+  (MkItemRef Book1 Prop 33)
+  (Forall Type (\t => Causes God t)) -- Necessary order (same statement as determinism for now)
+  [MkItemRef Book1 Prop 29, MkItemRef Book1 Prop 16]
+  ["note-p33-1"]
+
+||| Proposition 34: God's power is identical with his essence.
+public export
+prop34 : PropDecl
+prop34 = MkPropDecl
+  (MkItemRef Book1 Prop 34)
+  (Causes God God) -- Power (causality) is Essence (Self)
+  [MkItemRef Book1 Prop 11, MkItemRef Book1 Prop 16]
+  ["note-p34-1"]
+
+||| Proposition 35: Whatsoever we conceive to be in the power of God, necessarily exists.
+public export
+prop35 : PropDecl
+prop35 = MkPropDecl
+  (MkItemRef Book1 Prop 35)
+  (Forall Type (\t => Causes God t -> t)) -- If in God's power (causes), it exists
+  [MkItemRef Book1 Prop 34]
+  ["note-p35-1"]
+
+||| Proposition 36: There is no cause from whose nature some effect does not follow.
+public export
+prop36 : PropDecl
+prop36 = MkPropDecl
+  (MkItemRef Book1 Prop 36)
+  (Forall Type (\c => Exists Type (\e => Causes c e))) -- Every cause has an effect
+  [MkItemRef Book1 Prop 25, MkItemRef Book1 Prop 34, MkItemRef Book1 Prop 16]
+  ["note-p36-1"]
+
 ||| All Book I propositions
 public export
 allBook1Props : List PropDecl
-allBook1Props = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11, prop12, prop13, prop14, prop15, prop16, prop17, prop18, prop19, prop20, prop21, prop22, prop23, prop24, prop25]
+allBook1Props = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11, prop12, prop13, prop14, prop15, prop16, prop17, prop18, prop19, prop20, prop21, prop22, prop23, prop24, prop25, prop26, prop27, prop28, prop29, prop30, prop31, prop32, prop33, prop34, prop35, prop36]
