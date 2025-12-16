@@ -1,0 +1,22 @@
+# Idris 2 build artifacts
+build/
+*.ttc
+*.ttm
+*.ibc
+
+# Idris 2 generated files
+*.idr~
+
+# Editor files
+*.swp
+*.swo
+*~
+.DS_Store
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+

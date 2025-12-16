@@ -1,0 +1,19 @@
+package ethica-purified
+
+sourcedir = "src"
+
+modules = Ethica.Core.Logic
+        , Ethica.Core.Ref
+        , Ethica.Core.Meta
+        , Ethica.Core.Deps
+        , Ethica.Core.Registry
+        , Ethica.Core.Coverage
+        , Ethica.Meta.Notes
+        , Ethica.Book1.Defs
+        , Ethica.Book1.Axioms
+        , Ethica.Book1.Props
+        , Ethica.Book1.Proofs
+        , Main
+
+main = Main
+
