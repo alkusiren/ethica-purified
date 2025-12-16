@@ -21,6 +21,40 @@ public export
 Attribute : Type
 Attribute = Type
 
+||| Extended Ontology for God, Freedom, Eternity
+public export
+God : Type
+God = Substance
+
+public export
+Finite : Type -> Type
+Finite a = a
+
+public export
+Infinite : Type -> Type
+Infinite a = a
+
+public export
+Free : Type -> Type
+Free a = a
+
+public export
+Eternal : Type -> Type
+Eternal a = a
+
+||| Epistemology: Ideas and Objects
+public export
+Idea : Type
+Idea = Type
+
+public export
+Object : Type
+Object = Type
+
+public export
+Correspond : Idea -> Object -> Type
+Correspond i o = i -> o
+
 ||| Minimal predicates (uninterpreted relations)
 ||| In m s: mode m is in substance s. This relation, when inhabited, provides evidence
 ||| that s exists (is inhabited).
@@ -29,12 +63,16 @@ In : Mode -> Substance -> Type
 In m s = s  -- Minimal: if m is in s, then s exists (is inhabited)
 
 public export
-ConceivedThrough : Mode -> Substance -> Type
-ConceivedThrough m s = s  -- Similar structure
+ConceivedThrough : Type -> Type -> Type
+ConceivedThrough a b = a -> b  -- Generalized: a conceived through b implies dependency
 
 public export
-Causes : Substance -> Substance -> Type
-Causes s1 s2 = s1 -> s2  -- Causality: if s1 exists, then s2 exists
+Causes : Type -> Type -> Type
+Causes a b = a -> b  -- Causality: if a exists, then b exists
+
+public export
+Knowledge : Type -> Type
+Knowledge a = a  -- Knowledge of a is existence of a (constructively)
 
 ||| Proposition 1: A substance is prior in nature to its affections.
 ||| This is definitional/structural: if we define affections as modes "in" a substance,
@@ -75,7 +113,7 @@ prop3 = MkPropDecl
   (Forall Substance (\s1 => Forall Substance (\s2 =>
     (Logic.Not (Exists Mode (\m => And (In m s1) (In m s2)))) ->
     (Logic.Not (Causes s1 s2)))))
-  [MkItemRef Book1 Ax 1, MkItemRef Book1 Prop 2]
+  [MkItemRef Book1 Ax 4, MkItemRef Book1 Ax 5]
   ["note-p3-1"]
 
 ||| Proposition 4: Two or more distinct things are distinguished from one another 
@@ -91,7 +129,7 @@ prop4 = MkPropDecl
     (Logic.Not (s1 = s2)) -> 
     Or (Exists Attribute (\a1 => Exists Attribute (\a2 => Logic.Not (a1 = a2))))
        (Exists Mode (\m1 => Exists Mode (\m2 => Logic.Not (m1 = m2)))))))
-  [MkItemRef Book1 Def 3, MkItemRef Book1 Def 4, MkItemRef Book1 Def 5]
+  [MkItemRef Book1 Ax 1, MkItemRef Book1 Def 3, MkItemRef Book1 Def 4, MkItemRef Book1 Def 5]
   ["note-p4-1"]
 
 ||| Proposition 5: In nature there cannot be two or more substances of the same nature or attribute.
@@ -103,12 +141,11 @@ prop5 = MkPropDecl
   (MkItemRef Book1 Prop 5)
   (Forall Substance (\s1 => Forall Substance (\s2 =>
     (Logic.Not (s1 = s2)) -> 
-    Logic.Not (Exists Attribute (\a => And (a) (a))))))  -- Simplified: cannot share same attribute
-  [MkItemRef Book1 Prop 1, MkItemRef Book1 Prop 2]
+    Logic.Not (Exists Attribute (\a => And (s1 = a) (s2 = a))))))  -- Cannot share same attribute (identity)
+  [MkItemRef Book1 Prop 1, MkItemRef Book1 Prop 4]
   ["note-p5-1"]
 
 ||| All Book I propositions
 public export
 allBook1Props : List PropDecl
 allBook1Props = [prop1, prop2, prop3, prop4, prop5]
-

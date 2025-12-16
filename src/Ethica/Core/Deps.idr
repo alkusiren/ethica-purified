@@ -3,6 +3,7 @@
 module Ethica.Core.Deps
 
 import Ethica.Core.Ref
+import Ethica.Core.Meta
 
 %default total
 
@@ -36,6 +37,14 @@ public export
 getProof : (p : Proven ref) -> getStatement p
 getProof (MkProven _ _ prf) = prf
 
+||| Unsafely unwrap a proof to the expected statement type.
+||| This relies on the consistency of the Registry: the ItemRef in Proven
+||| must correspond to the PropDecl provided.
+||| Used to bridge the gap between ItemRef-based lookup and PropDecl-based usage.
+public export
+accessProof : (d : PropDecl) -> (p : Proven d.ref) -> statement d
+accessProof d (MkProven _ _ prf) = believe_me prf
+
 ||| Context that provides access only to declared dependencies
 ||| A proof of proposition P must use `ctx.given r prf` where `prf : Allowed uses r`
 ||| to access previously proven items.
@@ -45,4 +54,3 @@ record Ctx (uses : List ItemRef) where
   given : (r : ItemRef) -> Allowed uses r -> Proven r
 
 %name Ctx ctx, ctx1, ctx2
-

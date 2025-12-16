@@ -16,9 +16,18 @@ public export
 def1 : PropDecl
 def1 = MkPropDecl
   (MkItemRef Book1 Def 1)
-  (() -> Substance)  -- Substance is self-conceived and self-contained (trivial: given unit, return any Substance)
+  (() -> Substance)  -- Substance is self-conceived and self-contained
   []
   ["note-d1-1"]
+
+||| Definition 2: A thing is called finite after its kind, when it can be limited by another thing of the same nature.
+public export
+def2 : PropDecl
+def2 = MkPropDecl
+  (MkItemRef Book1 Def 2)
+  (Forall Substance (\s => Finite s -> ())) -- Finite is a valid predicate on substances
+  []
+  ["note-d2-1"]
 
 ||| Definition 3: By thing I understand that which is conceived through itself or through another.
 ||| Minimal structural definition: Things can be conceived through themselves or others.
@@ -53,8 +62,34 @@ def5 = MkPropDecl
   []
   ["note-d5-1"]
 
+||| Definition 6: By God, I mean a being absolutely infinite—that is, a substance consisting in infinite attributes.
+public export
+def6 : PropDecl
+def6 = MkPropDecl
+  (MkItemRef Book1 Def 6)
+  (() -> God) -- God is a well-defined type (Substance)
+  []
+  ["note-d6-1"]
+
+||| Definition 7: That thing is called free, which exists solely by the necessity of its own nature.
+public export
+def7 : PropDecl
+def7 = MkPropDecl
+  (MkItemRef Book1 Def 7)
+  (Forall Substance (\s => Free s -> ())) -- Freedom is a valid predicate
+  []
+  ["note-d7-1"]
+
+||| Definition 8: By eternity, I mean existence itself.
+public export
+def8 : PropDecl
+def8 = MkPropDecl
+  (MkItemRef Book1 Def 8)
+  (Forall Substance (\s => Eternal s -> ())) -- Eternity is a valid predicate
+  []
+  ["note-d8-1"]
+
 ||| All Book I definitions
 public export
 allBook1Defs : List PropDecl
-allBook1Defs = [def1, def3, def4, def5]
-
+allBook1Defs = [def1, def2, def3, def4, def5, def6, def7, def8]

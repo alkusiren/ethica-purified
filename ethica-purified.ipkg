@@ -1,6 +1,8 @@
 package ethica-purified
 
 sourcedir = "src"
+executable = "ethica_purified"
+
 
 modules = Ethica.Core.Logic
         , Ethica.Core.Ref
